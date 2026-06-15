@@ -32,11 +32,11 @@ MAJOR_MAP = {
 }
 YEAR_MAP = {
     'Semua' : 'Semua',
-    'Tahun ke-1 (Freshman)' : 'Freshman',
-    'Tahun ke-2 (Sophomore)' : 'Sophomore',
-    'Tahun ke-3 (Junior)' : 'Junior',
-    'Tahun ke-4 ' : 'Senior',
-    'Pascasarjana ' : 'Graduate',
+    'Tahun ke - 1' : 'Freshman',
+    'Tahun ke - 2' : 'Sophomore',
+    'Tahun ke - 3' : 'Junior',
+    'Tahun ke - 4' : 'Senior',
+    'Pascasarjana' : 'Graduate',
 }
 POLICY_MAP = {
     'Semua' : 'Semua',
