@@ -14,7 +14,8 @@ st.set_page_config(
 # ── Load data ─────────────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv("ai_student_impact_dataset.csv")
+    BASE = os.path.dirname(os.path.abspath(__file__))
+    df = pd.read_csv(os.path.join(BASE, "ai_student_impact_dataset.csv"))
     return df.drop(columns=['Student_ID'])
 
 df_ori = load_data()
