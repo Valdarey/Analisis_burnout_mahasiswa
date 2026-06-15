@@ -56,6 +56,20 @@ YEAR_LABEL    = {v: k for k, v in YEAR_MAP.items()   if v != 'Semua'}
 # ── Header ────────────────────────────────────────────────────────────────────
 st.title("Analisis Dampak AI terhadap Mahasiswa")
 st.caption("Dataset 50.000 mahasiswa · Filter interaktif · Visualisasi real-time")
+st.info("""
+**Tentang Dashboard ini**
+
+Dashboard ini menganalisis bagaimana penggunaan teknologi AI Generatif (seperti ChatGPT, Copilot, dll) 
+mempengaruhi kondisi akademik dan kesehatan mental mahasiswa.
+
+Data mencakup **50.000 mahasiswa** dari berbagai jurusan dan tahun studi, dengan mengukur:
+- **Performa Akademik** — perubahan GPA sebelum dan sesudah semester
+- **Kebiasaan Pakai AI** — jam penggunaan, jumlah tools, tingkat ketergantungan
+- **Kesehatan Mental** — tingkat kecemasan ujian dan risiko burnout (Rendah / Sedang / Tinggi)
+- **Kebiasaan Belajar** — jam belajar mandiri dan kemampuan retensi materi
+
+Gunakan **filter di sidebar kiri** untuk melihat data berdasarkan jurusan, tahun studi, atau kebijakan kampus terhadap AI.
+""")
 st.divider()
 
 # ── Sidebar Filter ────────────────────────────────────────────────────────────
