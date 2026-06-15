@@ -23,26 +23,26 @@ df_ori = load_data()
 
 # ── Mapping label ramah ───────────────────────────────────────────────────────
 MAJOR_MAP = {
-    'Semua'                    : 'Semua',
-    'Seni & Desain'            : 'Arts',
-    'Bisnis & Manajemen'       : 'Business',
-    'Ilmu Sosial & Humaniora'  : 'Humanities',
-    'Kedokteran & Kesehatan'   : 'Medical',
+    'Semua' : 'Semua',
+    'Seni & Desain' : 'Arts',
+    'Bisnis & Manajemen' : 'Business',
+    'Ilmu Sosial & Humaniora' : 'Humanities',
+    'Kedokteran & Kesehatan' : 'Medical',
     'Sains & Teknologi (STEM)' : 'STEM',
 }
 YEAR_MAP = {
-    'Semua'                    : 'Semua',
-    'Tahun 1 (Freshman)'       : 'Freshman',
-    'Tahun 2 (Sophomore)'      : 'Sophomore',
-    'Tahun 3 (Junior)'         : 'Junior',
-    'Tahun 4 (Senior)'         : 'Senior',
-    'Pascasarjana (Graduate)'  : 'Graduate',
+    'Semua' : 'Semua',
+    'Tahun ke-1 (Freshman)' : 'Freshman',
+    'Tahun ke-2 (Sophomore)' : 'Sophomore',
+    'Tahun ke-3 (Junior)' : 'Junior',
+    'Tahun ke-4 ' : 'Senior',
+    'Pascasarjana ' : 'Graduate',
 }
 POLICY_MAP = {
-    'Semua'                    : 'Semua',
-    'AI Didorong Aktif'        : 'Actively_Encouraged',
-    'AI Boleh dengan Kutipan'  : 'Allowed_With_Citation',
-    'AI Dilarang Ketat'        : 'Strict_Ban',
+    'Semua' : 'Semua',
+    'AI Didorong Aktif' : 'Actively_Encouraged',
+    'AI Boleh dengan Kutipan' : 'Allowed_With_Citation',
+    'AI Dilarang Ketat' : 'Strict_Ban',
 }
 
 MAJOR_ORDER   = ['Arts', 'Business', 'Humanities', 'Medical', 'STEM']
@@ -54,13 +54,13 @@ MAJOR_LABEL   = {v: k for k, v in MAJOR_MAP.items()  if v != 'Semua'}
 YEAR_LABEL    = {v: k for k, v in YEAR_MAP.items()   if v != 'Semua'}
 
 # ── Header ────────────────────────────────────────────────────────────────────
-st.title("📊 Analisis Dampak AI terhadap Mahasiswa")
+st.title("Analisis Dampak AI terhadap Mahasiswa")
 st.caption("Dataset 50.000 mahasiswa · Filter interaktif · Visualisasi real-time")
 st.divider()
 
 # ── Sidebar Filter ────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.header("🔍 Filter Data")
+    st.header("Filter Data")
 
     pilih_major  = st.selectbox("Jurusan", list(MAJOR_MAP.keys()))
     pilih_year   = st.selectbox("Tahun Studi", list(YEAR_MAP.keys()))
@@ -71,8 +71,8 @@ with st.sidebar:
 
 # ── Filter data ───────────────────────────────────────────────────────────────
 df = df_ori.copy()
-if MAJOR_MAP[pilih_major]  != 'Semua': df = df[df['Major_Category']      == MAJOR_MAP[pilih_major]]
-if YEAR_MAP[pilih_year]    != 'Semua': df = df[df['Year_of_Study']        == YEAR_MAP[pilih_year]]
+if MAJOR_MAP[pilih_major]  != 'Semua': df = df[df['Major_Category'] == MAJOR_MAP[pilih_major]]
+if YEAR_MAP[pilih_year]    != 'Semua': df = df[df['Year_of_Study'] == YEAR_MAP[pilih_year]]
 if POLICY_MAP[pilih_policy]!= 'Semua': df = df[df['Institutional_Policy'] == POLICY_MAP[pilih_policy]]
 
 if len(df) == 0:
@@ -84,12 +84,12 @@ vc    = df['Burnout_Risk_Level'].value_counts()
 total = len(df)
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
-col1.metric("Total Mahasiswa",    f"{total:,}")
+col1.metric("Total Mahasiswa", f"{total:,}")
 col2.metric("Rata-rata GPA Awal", f"{df['Pre_Semester_GPA'].mean():.2f}")
 col3.metric("Rata-rata GPA Akhir",f"{df['Post_Semester_GPA'].mean():.2f}")
-col4.metric("Rata-rata Jam AI",   f"{df['Weekly_GenAI_Hours'].mean():.1f} jam/minggu")
-col5.metric("Burnout Tinggi",  f"{vc.get('High', 0)/total*100:.1f}%")
-col6.metric("Burnout Rendah",  f"{vc.get('Low',  0)/total*100:.1f}%")
+col4.metric("Rata-rata Jam AI", f"{df['Weekly_GenAI_Hours'].mean():.1f} jam/minggu")
+col5.metric("Burnout Tinggi", f"{vc.get('High', 0)/total*100:.1f}%")
+col6.metric("Burnout Rendah", f"{vc.get('Low',  0)/total*100:.1f}%")
 
 st.divider()
 
@@ -119,7 +119,7 @@ with col_b:
     pivot = df.groupby(['Major_Category','Burnout_Risk_Level']).size().unstack(fill_value=0)
     pivot = pivot.reindex(index=MAJOR_ORDER, columns=BURNOUT_ORDER, fill_value=0)
     pivot.index   = [MAJOR_LABEL.get(m, m) for m in pivot.index]
-    pivot.columns = [BURNOUT_LABEL[b]       for b in pivot.columns]
+    pivot.columns = [BURNOUT_LABEL[b] for b in pivot.columns]
     fig, ax = plt.subplots(figsize=(6, 3.5))
     pivot.plot(kind='bar', ax=ax, color=BURNOUT_COLOR, alpha=0.85, width=0.7)
     ax.set_xlabel('')
@@ -138,7 +138,7 @@ with col_c:
     pivot2 = df.groupby(['Year_of_Study','Burnout_Risk_Level']).size().unstack(fill_value=0)
     pivot2 = pivot2.reindex(index=YEAR_ORDER, columns=BURNOUT_ORDER, fill_value=0)
     pivot2.index   = [YEAR_LABEL.get(y, y) for y in pivot2.index]
-    pivot2.columns = [BURNOUT_LABEL[b]      for b in pivot2.columns]
+    pivot2.columns = [BURNOUT_LABEL[b] for b in pivot2.columns]
     fig, ax = plt.subplots(figsize=(6, 3.5))
     pivot2.plot(kind='bar', ax=ax, color=BURNOUT_COLOR, alpha=0.85, width=0.7)
     ax.set_xlabel('')
@@ -175,7 +175,7 @@ with col_e:
     genai = df.groupby(['Major_Category','Burnout_Risk_Level'])['Weekly_GenAI_Hours'].mean().unstack(fill_value=0)
     genai = genai.reindex(index=MAJOR_ORDER, columns=BURNOUT_ORDER, fill_value=0)
     genai.index   = [MAJOR_LABEL.get(m, m) for m in genai.index]
-    genai.columns = [BURNOUT_LABEL[b]       for b in genai.columns]
+    genai.columns = [BURNOUT_LABEL[b] for b in genai.columns]
     fig, ax = plt.subplots(figsize=(6, 3.5))
     genai.plot(kind='bar', ax=ax, color=BURNOUT_COLOR, alpha=0.85, width=0.7)
     ax.set_xlabel('')
@@ -207,5 +207,5 @@ with col_f:
 # ── Tabel Data Mentah (opsional) ──────────────────────────────────────────────
 st.divider()
 with st.expander("Lihat Data Mentah"):
-    st.dataframe(df.head(100), use_container_width=True)
-    st.caption(f"Menampilkan 100 dari {total:,} baris")
+    st.dataframe(df.head(20000), use_container_width=True)
+    st.caption(f"Menampilkan 20.000 dari {total:,} baris")
