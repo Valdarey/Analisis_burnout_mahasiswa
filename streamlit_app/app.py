@@ -70,6 +70,39 @@ Data mencakup **50.000 mahasiswa** dari berbagai jurusan dan tahun studi, dengan
 
 Gunakan **filter di sidebar kiri** untuk melihat data berdasarkan jurusan, tahun studi, atau kebijakan kampus terhadap AI.
 """)
+
+with st.expander("Apa itu Burnout Risk Level?"):
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.success("""
+        ### Burnout Rendah (Low)
+        Mahasiswa dalam kondisi seimbang. 
+        Penggunaan AI membantu produktivitas 
+        tanpa mengganggu kesehatan mental. 
+        Jam belajar mandiri tetap terjaga 
+        dan tidak terlalu bergantung pada AI.
+        """)
+    
+    with col2:
+        st.warning("""
+        ### Burnout Sedang (Medium)
+        Mahasiswa mulai menunjukkan tanda 
+        kelelahan. Ketergantungan pada AI 
+        cukup tinggi, kecemasan saat ujian 
+        meningkat, dan keseimbangan belajar 
+        mulai terganggu. Perlu diwaspadai.
+        """)
+    
+    with col3:
+        st.error("""
+        ### Burnout Tinggi (High)
+        Mahasiswa mengalami kelelahan akademik 
+        serius. Ditandai dengan jam pemakaian AI 
+        sangat tinggi, ketergantungan berlebih, 
+        kecemasan ujian parah, dan penurunan 
+        kemampuan menyerap materi secara mandiri.
+        """)
 st.divider()
 
 # ── Sidebar Filter ────────────────────────────────────────────────────────────
