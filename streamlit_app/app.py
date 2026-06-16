@@ -255,4 +255,4 @@ with col_f:
 st.divider()
 with st.expander("Lihat Data Mentah"):
     st.dataframe(df.head(20000), use_container_width=True)
-    st.caption(f"Menampilkan 20.000 dari {total:,} baris")
+    st.caption(f"Menampilkan 100 dari {total:,} baris")
