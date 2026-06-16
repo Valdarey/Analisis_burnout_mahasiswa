@@ -130,7 +130,7 @@ if len(df) == 0:
 vc    = df['Burnout_Risk_Level'].value_counts()
 total = len(df)
 
-col1, col2, col3, col4, col5, col6, col7 = st.columns(6)
+col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 col1.metric("Total Mahasiswa", f"{total:,}")
 col2.metric("Rata-rata GPA Awal", f"{df['Pre_Semester_GPA'].mean():.2f}")
 col3.metric("Rata-rata GPA Akhir",f"{df['Post_Semester_GPA'].mean():.2f}")
