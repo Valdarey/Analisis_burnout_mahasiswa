@@ -130,13 +130,14 @@ if len(df) == 0:
 vc    = df['Burnout_Risk_Level'].value_counts()
 total = len(df)
 
-col1, col2, col3, col4, col5, col6 = st.columns(6)
+col1, col2, col3, col4, col5, col6, col7 = st.columns(6)
 col1.metric("Total Mahasiswa", f"{total:,}")
 col2.metric("Rata-rata GPA Awal", f"{df['Pre_Semester_GPA'].mean():.2f}")
 col3.metric("Rata-rata GPA Akhir",f"{df['Post_Semester_GPA'].mean():.2f}")
 col4.metric("Rata-rata Jam AI", f"{df['Weekly_GenAI_Hours'].mean():.1f} jam/minggu")
 col5.metric("Burnout Tinggi", f"{vc.get('High', 0)/total*100:.1f}%")
-col6.metric("Burnout Rendah", f"{vc.get('Low',  0)/total*100:.1f}%")
+col6.metric("Burnout Sedang", f"{vc.get('Medium', 0)/total*100:.1f}%")
+col7.metric("Burnout Rendah", f"{vc.get('Low',  0)/total*100:.1f}%")
 
 st.divider()
 
