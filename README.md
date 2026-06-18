@@ -57,7 +57,7 @@ Berdasarkan analisis korelasi dan feature importance:
 - Variasi jumlah tools AI (`Tool_Diversity`) hampir tidak berpengaruh terhadap burnout
 
 
-## 📈 Visualisasi
+## Visualisasi
 
 Project ini mencakup:
 - Correlation matrix antar fitur numerik
